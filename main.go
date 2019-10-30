@@ -14,7 +14,10 @@ import (
 func main() {
 	traceroute_target := parse_args()
 	traceroute_out := traceroute(traceroute_target)
+	print_traceroute_with_countries(traceroute_out)
+}
 
+func print_traceroute_with_countries(traceroute_out string) {
 	ipdb.Init()
 	ip_regex := regexp.MustCompile(`\((.*?)\)`)
 	lines := strings.Split(traceroute_out, "\n")
