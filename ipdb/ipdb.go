@@ -18,8 +18,8 @@ type IPRecord struct {
 
 // loads the 12MB file (approx. 400 000 records) into memory to serve as a database
 func Init() {
-    // In case of multiple Init() calls in the same program,
-    // we should not load the 12MB file in memory too many times
+	// In case of multiple Init() calls in the same program,
+	// we should not load the 12MB file in memory too many times
 	if db != nil {
 		return
 	}
@@ -44,9 +44,9 @@ func Init() {
 }
 
 func GetCountry(ip string) string {
-    if db == nil {
-        log.Fatal("ERROR: no db found (ipdb.Init() not called?)")
-    }
+	if db == nil {
+		log.Fatal("ERROR: no db found (ipdb.Init() not called?)")
+	}
 	ip_as_int := ipToInt(ip)
 	for _, record := range db {
 		if ip_as_int > record.FromIP && ip_as_int < record.ToIP {
@@ -57,6 +57,5 @@ func GetCountry(ip string) string {
 }
 
 func ipToInt(IPv4Address string) int64 {
-    return big.NewInt(0).SetBytes(net.ParseIP(IPv4Address).To4()).Int64()
+	return big.NewInt(0).SetBytes(net.ParseIP(IPv4Address).To4()).Int64()
 }
-

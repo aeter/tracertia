@@ -8,25 +8,25 @@ import (
 	"regexp"
 	"strings"
 
-    "./ipdb"
+	"./ipdb"
 )
 
 func main() {
 	traceroute_target := parse_args()
 	traceroute_out := traceroute(traceroute_target)
 
-    ipdb.Init()
+	ipdb.Init()
 	ip_regex := regexp.MustCompile(`\((.*?)\)`)
 	lines := strings.Split(traceroute_out, "\n")
 	for i, line := range lines {
 		if i == 0 {
-            fmt.Println(line)
-            continue
+			fmt.Println(line)
+			continue
 		}
 
 		found_ip := ip_regex.FindStringSubmatch(line)
 		if found_ip != nil {
-            fmt.Printf("%s /%s/\n", line, ipdb.GetCountry(found_ip[1]))
+			fmt.Printf("%s /%s/\n", line, ipdb.GetCountry(found_ip[1]))
 		}
 	}
 }
