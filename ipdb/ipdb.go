@@ -1,7 +1,6 @@
 package ipdb
 
 import (
-	"io/ioutil"
 	"log"
 	"math/big"
 	"net"
@@ -16,19 +15,14 @@ type IPRecord struct {
 	Country string `json:"Country"`
 }
 
-// loads the 12MB file (approx. 400 000 records) into memory to serve as a database
+// parses the ~12MB dbdata.go (approx. 400 000 records)
 func Init() {
-	// In case of multiple Init() calls in the same program,
-	// we should not load the 12MB file in memory too many times
+	// This check is in case of multiple Init() calls in the same program
 	if db != nil {
 		return
 	}
 
-	content, err := ioutil.ReadFile("ipdb/ip2country-v4.tsv")
-	if err != nil {
-		log.Fatal(err)
-	}
-	lines := strings.Split(string(content), "\n")
+	lines := strings.Split(DBData, "\n")
 	for _, line := range lines {
 		if line == "" {
 			continue
