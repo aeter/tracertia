@@ -36,8 +36,8 @@ func print_traceroute_with_countries(traceroute_out string) {
 
 func traceroute(domain_or_ip string) string {
 	// Linux only (because it spawns `traceroute`)
-    // Note: using --icmp in order to avoid firewalls blocking high UDP ports
-    // Note: `traceroute --icmp` requires root privileges
+	// Note: using --icmp in order to avoid firewalls blocking high UDP ports
+	// Note: `traceroute --icmp` requires root privileges
 	cmd := exec.Command("sudo", "traceroute", "--icmp", "-w 3", "-q 1", "-m 16", domain_or_ip)
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
