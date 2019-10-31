@@ -1,3 +1,7 @@
+/*
+Package ipdb implements an IPv4 to Country lookup.
+The database is embedded in the package.
+*/
 package ipdb
 
 import (
