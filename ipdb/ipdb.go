@@ -5,7 +5,6 @@ The database is embedded in the package.
 package ipdb
 
 import (
-	"log"
 	"math/big"
 	"net"
 	"strings"
@@ -43,7 +42,7 @@ func Init() {
 
 func GetCountry(ip string) string {
 	if db == nil {
-		log.Fatal("ERROR: no db found (ipdb.Init() not called?)")
+		Init()
 	}
 	ip_as_int := ipToInt(ip)
 	for _, record := range db {

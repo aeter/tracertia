@@ -18,7 +18,6 @@ func main() {
 }
 
 func printCountries(tracerouteOut string) {
-	ipdb.Init()
 	ipRegex := regexp.MustCompile(`\((.*?)\)`)
 	lines := strings.Split(tracerouteOut, "\n")
 	for i, line := range lines {
