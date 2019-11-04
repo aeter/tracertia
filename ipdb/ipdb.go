@@ -13,9 +13,9 @@ import (
 var db []IPRecord
 
 type IPRecord struct {
-	FromIP  int64  `json:"From IP"`
-	ToIP    int64  `json:"To IP"`
-	Country string `json:"Country"`
+	FromIP  int64
+	ToIP    int64
+	Country string
 }
 
 // parses the ~12MB dbdata.go (approx. 400 000 records)
