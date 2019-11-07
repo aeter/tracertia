@@ -10,17 +10,17 @@ import (
 	"strings"
 )
 
-var db []IPRecord
+var db []iPRecord
 
-type IPRecord struct {
+type iPRecord struct {
 	FromIP  int64
 	ToIP    int64
 	Country string
 }
 
 // parses the ~12MB dbdata.go (approx. 400 000 records)
-func Init() {
-	// This check is in case of multiple Init() calls in the same program
+func loadDB() {
+	// This check is in case of multiple loadDB() calls in the same program
 	if db != nil {
 		return
 	}
@@ -31,7 +31,7 @@ func Init() {
 			continue
 		}
 		s := strings.Split(line, "\t")
-		iprecord := IPRecord{
+		iprecord := iPRecord{
 			FromIP:  ipToInt(s[0]),
 			ToIP:    ipToInt(s[1]),
 			Country: s[2],
@@ -42,7 +42,7 @@ func Init() {
 
 func GetCountry(ip string) string {
 	if db == nil {
-		Init()
+		loadDB()
 	}
 	ip_as_int := ipToInt(ip)
 	for _, record := range db {
