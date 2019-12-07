@@ -20,19 +20,13 @@ func main() {
 func printCountries(tracerouteOut string) {
 	ipRegex := regexp.MustCompile(`\((.*?)\)`)
 	lines := strings.Split(tracerouteOut, "\n")
-	for i, line := range lines {
-		if i == 0 {
-			fmt.Println(line)
-			continue
-		}
-
+	for _, line := range lines {
 		ip := ipRegex.FindStringSubmatch(line)
 		if ip != nil {
 			fmt.Printf("%s /%s/\n", line, ipdb.GetCountry(ip[1]))
 		} else {
 			fmt.Println(line)
 		}
-
 	}
 }
 
