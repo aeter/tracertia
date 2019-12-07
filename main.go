@@ -29,7 +29,10 @@ func printCountries(tracerouteOut string) {
 		ip := ipRegex.FindStringSubmatch(line)
 		if ip != nil {
 			fmt.Printf("%s /%s/\n", line, ipdb.GetCountry(ip[1]))
+		} else {
+			fmt.Println(line)
 		}
+
 	}
 }
 
